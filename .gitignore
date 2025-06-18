@@ -1,0 +1,7 @@
+echo "venv/
+*.egg-info/
+__pycache__/
+*.py[cod]
+build/
+dist/" > .gitignore
+

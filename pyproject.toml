@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sequential_relevant_cp"  # <- your package name on PyPI (lowercase, no spaces)
+version = "0.1.0"
+description = "A toolbox for change-point detection and statistical monitoring"
+authors = [
+  { name="Rupsa Basu", email="rupsa.basu2020@gmail.com" }
+]
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.8"
+
+dependencies = [
+  "numpy",
+  "pandas",
+  "matplotlib",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/rupsabasu2020/sequential_relevant_cp"
