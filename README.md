@@ -1,8 +1,6 @@
 # sequential_relevant_cp
 
-**sequential_relevant_cp** is a Python toolbox for detecting change points in time series data using CUSUM, iterative algorithms, Brownian motion simulations, and more.  
-It is designed for statistical monitoring, structural breaks, and Monte Carlo simulations.
-
+**sequential_relevant_cp** is a Python toolbox for detecting change points in time series data using CUSUM, iterative algorithms, Brownian motion simulations, etc. corresponding to the methods presented in the paper ....
 ---
 
 ## 📦 Installation
