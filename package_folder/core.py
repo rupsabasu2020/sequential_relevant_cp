@@ -409,15 +409,13 @@ def unified_LN_range(data, theta_set, N, k, delay_time, results, x_upper=None, d
         next_val_k = min([key for key in delay_time.keys() if key > k], default=x_upper)
         k_monitor = np.linspace(prev_delay, next_val_k, num=next_val_k - prev_theta + 1, dtype=int) # Generate k_monitor values
         ll = [L_N_2(ik, N, prev_theta, W_val=brownian_motion) for ik in k_monitor]    # list of asymptotic values over k_monitor window
-        #results.update({prev_theta: np.max(ll)})
         results.update({prev_delay: np.max(ll)}) # update results with the maximum value
     else:
-        #print("case2", theta_set)
 
         prev_theta = max(theta for theta in theta_set if theta <= k)
         prev_delay = max([delay_time[delay] for delay in delay_time.keys() if delay <= k], default=N)
         updated_theta_set = [theta for theta in theta_set if theta <= prev_theta] # includes all change locations smaller than k
-        #print("updatedCase2", updated_theta_set)
+
         if len(updated_theta_set) <= 1:
             # no L1 no extremal sets
             next_val_k = x_upper #- prev_theta
@@ -428,16 +426,14 @@ def unified_LN_range(data, theta_set, N, k, delay_time, results, x_upper=None, d
 
         else:
             # here L1 and hence extremals
-            #next_val_k = min([key for key in delay_time.keys() if key > k], default=x_upper) # !!!! version on Feb11,25
             next_val_k = min([delay_time[key] for key in delay_time.keys() if key > k], default=x_upper)
-            #delta_size = {v: delta_dict[k] for k, v in delay_time.items()}### unnecessary?
+
             L1 = L_N_1(data, updated_theta_set, N, k, W_val=brownian_motion, Delta=delta_val, delta_variations=vary_delta)
             k_monitor = np.linspace(prev_delay, next_val_k, num=next_val_k - prev_theta + 1, dtype=int)
 
             ll_o = [L_N_2(ik, N, prev_theta, W_val=brownian_motion) for ik in k_monitor]
             L2 = np.max(ll_o)     # outer sup of L_N_2
             max_value = max(max(L1.values()), L2)
-            #results.update({prev_theta: max_value})
             results.update({prev_delay: max_value}) # update results with the maximum value
 
     return results
@@ -484,16 +480,7 @@ def scanning_stat(data, N, theta_set, delta, total_datalength= None, delay_times
     for k_theta in upto_which_k:
         prev_monitor_k = max([delay_times[key] for key in delay_times.keys() if key <= k_theta], default=N) # if no delay times, set to N+1
         next_val_k = min([delay_times[key] for key in delay_times.keys() if key > k_theta], default= total_datalength)#max([val2 for val2 in delay_times.values() if val2 > k_theta], default=total_datalength)
-        #---------------previous working version with monitoring exactly at theta -----------------------#
-        # if delay_times and any(key <= k_theta for key in delay_times.keys()):
-        
-        #     #prev_monitor_k = max([key for key in delay_times.keys() if key <= k_theta]) 
-        #     prev_monitor_k = max([delay_times[key] for key in delay_times.keys() if key <= k_theta], default=N) # if no delay times, set to N+1
-        #     print("k_theta", k_theta, "prev_monitor_k", prev_monitor_k)
-        #     next_val_k = min([key2 for key2 in delay_times.keys() if key2 > k_theta], default=total_datalength)
-        # else:
-        #     prev_monitor_k = N + 1 # initial monitoring after historical data
-        #     next_val_k = total_datalength
+
 
 
 
