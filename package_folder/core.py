@@ -50,7 +50,7 @@ Functions:
 
 """
 
-# -----------code for algorithm 1 for locating changes works now! -----------------#
+# -----------code for algorithm 1 for locating changes  -----------------#
 
 def s(k, bar_k, N):
     """
